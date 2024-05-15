@@ -9,11 +9,11 @@ import (
 	"os"
 
 	"github.com/BurntSushi/toml"
-	"github.com/nicksnyder/go-i18n/v2/i18n"
-	"github.com/nicksnyder/go-i18n/v2/internal"
-	"github.com/nicksnyder/go-i18n/v2/internal/plural"
+	"github.com/uncle-gua/i18n"
+	"github.com/uncle-gua/i18n/internal/plural"
+	"github.com/uncle-gua/i18n/template"
 	"golang.org/x/text/language"
-	yaml "gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v2"
 )
 
 func usageMerge() {
@@ -171,7 +171,7 @@ func merge(messageFiles map[string][]byte, sourceLanguageTag language.Tag, outdi
 						Description: srcTemplate.Description,
 						Hash:        srcTemplate.Hash,
 					},
-					PluralTemplates: make(map[plural.Form]*internal.Template),
+					PluralTemplates: make(map[plural.Form]*template.Template),
 				}
 				all[dstLangTag][srcTemplate.ID] = dstMessageTemplate
 			}
@@ -269,7 +269,7 @@ func activeDst(src, dst *i18n.MessageTemplate, pluralRule *plural.Rule) (active 
 						Description: src.Description,
 						Hash:        src.Hash,
 					},
-					PluralTemplates: make(map[plural.Form]*internal.Template),
+					PluralTemplates: make(map[plural.Form]*template.Template),
 				}
 			}
 			srcPlural := src.PluralTemplates[pluralForm]
@@ -286,7 +286,7 @@ func activeDst(src, dst *i18n.MessageTemplate, pluralRule *plural.Rule) (active 
 					Description: src.Description,
 					Hash:        src.Hash,
 				},
-				PluralTemplates: make(map[plural.Form]*internal.Template),
+				PluralTemplates: make(map[plural.Form]*template.Template),
 			}
 		}
 		active.PluralTemplates[pluralForm] = dt

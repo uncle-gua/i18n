@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/nicksnyder/go-i18n/v2/i18n/template"
-	"github.com/nicksnyder/go-i18n/v2/internal/plural"
+	"github.com/uncle-gua/i18n/internal/plural"
+	"github.com/uncle-gua/i18n/template"
 	"golang.org/x/text/language"
 )
 

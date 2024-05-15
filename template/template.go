@@ -1,9 +1,7 @@
-package internal
+package template
 
 import (
 	"sync"
-
-	"github.com/nicksnyder/go-i18n/v2/i18n/template"
 )
 
 // Template stores the template for a string and a cached version of the parsed template if they are cacheable.
@@ -13,12 +11,12 @@ type Template struct {
 	RightDelim string
 
 	parseOnce      sync.Once
-	parsedTemplate template.ParsedTemplate
+	parsedTemplate ParsedTemplate
 	parseError     error
 }
 
-func (t *Template) Execute(parser template.Parser, data interface{}) (string, error) {
-	var pt template.ParsedTemplate
+func (t *Template) Execute(parser Parser, data interface{}) (string, error) {
+	var pt ParsedTemplate
 	var err error
 	if parser.Cacheable() {
 		t.parseOnce.Do(func() {

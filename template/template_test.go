@@ -1,17 +1,15 @@
-package internal
+package template
 
 import (
 	"strings"
 	"testing"
-	texttemplate "text/template"
-
-	"github.com/nicksnyder/go-i18n/v2/i18n/template"
+	"text/template"
 )
 
 func TestExecute(t *testing.T) {
 	tests := []struct {
 		template *Template
-		parser   template.Parser
+		parser   Parser
 		data     interface{}
 		result   string
 		err      string
@@ -37,8 +35,8 @@ func TestExecute(t *testing.T) {
 			template: &Template{
 				Src: "hello {{world}}",
 			},
-			parser: &template.TextParser{
-				Funcs: texttemplate.FuncMap{
+			parser: &TextParser{
+				Funcs: template.FuncMap{
 					"world": func() string {
 						return "world"
 					},
@@ -58,7 +56,7 @@ func TestExecute(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.template.Src, func(t *testing.T) {
 			if test.parser == nil {
-				test.parser = &template.TextParser{}
+				test.parser = &TextParser{}
 			}
 			result, err := test.template.Execute(test.parser, test.data)
 			if actual := str(err); !strings.Contains(str(err), test.err) {

@@ -7,10 +7,10 @@ import (
 	"path/filepath"
 
 	"github.com/BurntSushi/toml"
-	"github.com/nicksnyder/go-i18n/v2/i18n"
-	"github.com/nicksnyder/go-i18n/v2/internal/plural"
+	"github.com/uncle-gua/i18n"
+	"github.com/uncle-gua/i18n/internal/plural"
 	"golang.org/x/text/language"
-	yaml "gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v2"
 )
 
 func writeFile(outdir, label string, langTag language.Tag, format string, messageTemplates map[string]*i18n.MessageTemplate, sourceLanguage bool) (path string, content []byte, err error) {

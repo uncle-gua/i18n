@@ -1,9 +1,9 @@
-module github.com/nicksnyder/go-i18n/v2
+module github.com/uncle-gua/i18n
 
 go 1.18
 
 require (
 	github.com/BurntSushi/toml v1.3.2
-	golang.org/x/text v0.14.0
+	golang.org/x/text v0.15.0
 	gopkg.in/yaml.v2 v2.4.0
 )
